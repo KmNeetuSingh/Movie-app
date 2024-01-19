@@ -49,6 +49,7 @@ input:focus {
 .container {
     color: black; /* Text color for elements inside the container */
     width: 600px;
+    height:700 px;
     margin: 60px auto;
     display: flex;
     gap: 30px;
