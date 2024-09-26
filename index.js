@@ -30,8 +30,8 @@ function searchMovie() {
 }
 
 function updateMovieDetails(data) {
-    document.getElementById('title').innerText = data.Title;
-    document.getElementById('desc').innerText = data.Plot;
+    document.getElementById('title').innerText = `❤ ${data.Title}`;
+    document.getElementById('desc').innerText = `🎓 ${data.Plot}`;
     document.getElementById('genre').innerText = data.Genre;
     document.getElementById('actors').innerText = data.Actors;
     document.getElementById('directors').innerText = data.Director;
@@ -51,25 +51,52 @@ function toggleDarkMode() {
 
 function shareOnTwitter() {
     const title = document.getElementById('title').innerText;
+    const genre = document.getElementById('genre').innerText;
+    const directors = document.getElementById('directors').innerText;
     const ratings = document.getElementById('ratings').innerText;
     const summary = document.getElementById('desc').innerText;
-    const url = `https://twitter.com/intent/tweet?text=🎬 Check out this movie: *${title}* 🚀, Rating: *${ratings}/10* ⭐️. Summary: *${summary}* 💬`;
+    const appLink = 'https://movie-app-beta-smoky.vercel.app/'; 
+
+    const url = `https://twitter.com/intent/tweet?text=  *🎬 Vibe check of this movie:* : ${title} 🚀%0A` + 
+                `*Genre: *${genre}🌟%0A` + 
+                `*Directors:*${directors} 🎥%0A` + 
+                `*Rating:* ${ratings}/10 ⭐️%0A` + 
+                `*Summary:* ${summary} 💬%0A` + 
+                `If you wanna know more, check it out on the app: ${appLink} 📲`;
     window.open(url, '_blank');
 }
 
 function shareOnFacebook() {
     const title = document.getElementById('title').innerText;
+    const genre = document.getElementById('genre').innerText;
+    const directors = document.getElementById('directors').innerText;
     const ratings = document.getElementById('ratings').innerText;
     const summary = document.getElementById('desc').innerText;
-    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`🎬 Movie: *${title}* 🚀, Rating: *${ratings}/10* ⭐️, Summary: *${summary}* 💬`)}`;
+    const appLink = 'https://movie-app-beta-smoky.vercel.app/'; 
+
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`🎬 Vibe check of this movie: *${title}* 🚀%0A` + 
+                `*Genre :* ${genre} 🌟%0A` + 
+                `*Directors:* ${directors} 🎥%0A` + 
+                `*Rating:* ${ratings}/10 ⭐️%0A` + 
+                `*Summary:* ${summary} 💬%0A` + 
+                `If you wanna know more, check it out on the app: ${appLink} 📲`)}`;
     window.open(fbUrl, '_blank');
 }
 
 function shareOnWhatsApp() {
     const title = document.getElementById('title').innerText;
+    const genre = document.getElementById('genre').innerText;
+    const directors = document.getElementById('directors').innerText;
     const ratings = document.getElementById('ratings').innerText;
     const summary = document.getElementById('desc').innerText;
-    const waUrl = `https://api.whatsapp.com/send?text=🎬 *Vibe check of this movie *: ${title} 🚀,⭐️.*Summary*:${summary} 💬, ❤ Review : ${ratings} `;
+    const appLink = 'https://movie-app-beta-smoky.vercel.app/'; 
+
+    const waUrl = `https://api.whatsapp.com/send?text= *🎬 Vibe check of this movie: ${title}* 🚀%0A` + 
+                  `*Genre:* ${genre}🌟%0A` + 
+                  `*Directors:* ${directors} 🎥%0A` + 
+                  `*Rating:* ${ratings}/10 ⭐️%0A` + 
+                  `*Summary:* ${summary} 💬%0A` + 
+                  `*If you wanna know more, check it out on the app: ${appLink} 📲*`;
     window.open(waUrl, '_blank');
 }
 
@@ -109,6 +136,7 @@ function submitReview() {
     reviews[title].push(review);
     localStorage.setItem('reviews', JSON.stringify(reviews));
     document.getElementById('reviewInput').value = '';
+    alert('Your review has been submitted! 🌟');
     loadReviews(title);
 }
 

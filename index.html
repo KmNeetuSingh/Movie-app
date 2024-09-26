@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background-color: #f0f4f8;
-            margin: 0;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, color 0.5s;
         }
 
         .dark-mode {
@@ -21,39 +19,39 @@
 
         .search {
             display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
         .search input {
-            padding: 12px;
+            margin:20px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 80%;
+            height:20px;
             font-size: 16px;
         }
 
         .search button {
             padding: 12px 20px;
-            margin-left: 10px;
+            margin : 5px 20px;
             background-color: #2563EB;
             color: white;
+            gap:20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 15px;
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s;
-        }
-
-        .search button:hover {
-            background-color: #1d4ed8;
         }
 
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 10px;
             background-color: white;
             border-radius: 15px;
             padding: 20px;
@@ -61,37 +59,25 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
         .movie-details {
             text-align: center;
-            color: #333;
+            color: #201e1e;
             margin-bottom: 20px;
-        }
-
-        .movie-details h2 {
-            margin: 0;
-            font-size: 1.8em;
-        }
-
-        .movie-details p {
-            margin: 5px 0;
-            color: #666;
         }
 
         #poster {
             margin-top: 20px;
             width: 100%;
-            max-width: 300px;
+            max-width: 400px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(15, 14, 14, 0.1);
         }
 
         .share-buttons {
             margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .share-buttons button {
@@ -105,13 +91,8 @@
             transition: background-color 0.3s;
         }
 
-        .share-buttons button:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Submit Button Style */
         .submit-button {
-            margin-top : 5px;
+            margin-top: 5px;
             padding: 10px 15px;
             background-color: #4CAF50;
             color: white;
@@ -128,7 +109,6 @@
             transform: scale(1.05);
         }
 
-        /* Review Section Style */
         .reviews {
             margin-top: 20px;
             width: 100%;
@@ -168,7 +148,6 @@
             background-color: #1d4ed8;
         }
 
-        /* Emoji Modal Style */
         #emoji-modal {
             position: absolute;
             background-color: white;
@@ -178,7 +157,6 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             display: none; 
-            margin-bottom :5px;
         }
 
         .emoji-container {
@@ -193,6 +171,16 @@
         }
 
         @media (min-width: 600px) {
+            .search {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .search input {
+                width: auto;
+                margin-right: 10px;
+            }
+
             .container {
                 flex-direction: row;
                 justify-content: space-between;
@@ -200,17 +188,16 @@
                 margin: auto;
             }
 
-            .container div {
-                flex: 1;
-                margin-right: 20px;
-            }
-
             .movie-details {
                 text-align: left;
+                margin: 0;
+            }
+            #poster{
+                display: none;
             }
         }
 
-        body>h1 {
+        body > h1 {
             text-align: center;
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -219,10 +206,10 @@
     </style>
 </head>
 
-<body>
+    <body>
     <h1>✨👀FlickFinder🤞</h1>
     <div class="search">
-        <input type="text" id="movieName" placeholder="Search any movie by its name...">
+        <input type="text" id="movieName" placeholder="Type movie name...">
         <button class="btn" onclick="searchMovie()">Search movie</button>
         <button class="btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </div>
@@ -240,16 +227,14 @@
             <p>⭐ IMDB Ratings: <span id="ratings"></span></p>
             <button class="watchlist-button" onclick="addToWatchlist()">➕ Add to Watchlist</button>
             <div class="share-buttons">
-                <button onclick="shareOnTwitter()">Share on Twitter</button>
-                <button onclick="shareOnFacebook()">Share on Facebook</button>
-                <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+                <button onclick="shareOnTwitter()">💦Share on Twitter</button>
+                <button onclick="shareOnFacebook()">➰Share on Facebook</button>
+                <button onclick="shareOnWhatsApp()">💌Share on WhatsApp</button>
             </div>
             <div class="reviews" id="reviews"></div>
             <div style="position: relative;">
                 <textarea id="reviewInput" placeholder=" Share your vibe check, leave a review....." rows="3" style="width: 100%;"></textarea>
-                <!-- Emoji Button -->
                 <button id="emoji-button" style="cursor: pointer;">😊</button>
-                <!-- Emoji Modal -->
                 <div id="emoji-modal">
                     <div class="emoji-container">
                         <span onclick="insertEmoji('😀')">😀</span>
@@ -257,31 +242,27 @@
                         <span onclick="insertEmoji('😍')">😍</span>
                         <span onclick="insertEmoji('🎬')">🎬</span>
                         <span onclick="insertEmoji('⭐️')">⭐️</span>
-                        <!-- Add more emojis as needed -->
                     </div>
                 </div>
             </div>
-            <button class="submit-button" onclick="submitReview()">Submit Review</button>
+            <button class="submit-button" onclick="submitReview()">🎞Submit Review</button>
         </div>
         <img src="" id="poster" alt="Movie Poster">
     </div>
 
     <script src="index.js"></script>
     <script>
-        // Show/Hide Emoji Modal
         document.getElementById('emoji-button').addEventListener('click', () => {
             const modal = document.getElementById('emoji-modal');
             modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
         });
 
-        // Insert Emoji into Textarea
         function insertEmoji(emoji) {
             const reviewInput = document.getElementById('reviewInput');
-            reviewInput.value += emoji; // Append emoji to the textarea
+            reviewInput.value += emoji;
             document.getElementById('emoji-modal').style.display = 'none';
         }
 
-        // Close Emoji Modal when clicking outside of it
         window.onclick = function(event) {
             const modal = document.getElementById('emoji-modal');
             if (event.target !== document.getElementById('emoji-button') && event.target !== modal) {
