@@ -8,6 +8,10 @@ function searchMovie() {
         return;
     }
 
+    // Show loading message
+    document.getElementById('movieContainer').style.display = 'none';
+    document.getElementById('title').innerText = 'Loading...'; // Show loading state
+
     let search = apiUrl + query;
 
     fetch(search)
@@ -26,7 +30,7 @@ function searchMovie() {
         })
         .catch(error => {
             console.error('Error:', error.message);
-            // Handle the error (e.g., display an error message on the webpage)
+            document.getElementById('title').innerText = 'Error: ' + error.message; // Display error message
         });
 }
 
@@ -37,8 +41,11 @@ function updateMovieDetails(data) {
     document.getElementById('actors').innerText = data.Actors;
     document.getElementById('directors').innerText = data.Director;
     document.getElementById('awards').innerText = data.Awards;
-    document.getElementById('collection').innerText = data.BoxOffice;
-    document.getElementById('ratings').innerText = data.imdbRating;
-    document.getElementById('writers').innerText = data.Writer;
-    document.getElementById('poster').src = data.Poster;
+    document.getElementById('collection').innerText = data.BoxOffice || "N/A"; // Handle missing data
+    document.getElementById('ratings').innerText = data.imdbRating || "N/A"; // Handle missing data
+    document.getElementById('writers').innerText = data.Writer || "N/A"; // Handle missing data
+    document.getElementById('poster').src = data.Poster || ''; // Handle missing poster
+
+    // Show the movie container after updating details
+    document.getElementById('movieContainer').style.display = 'flex';
 }
